@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield | Cybersecurity Toolkit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+
+    <header class="navbar">
+        <a href="#home" class="brand">🛡️ Cyber<span>Shield</span></a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#tools">Tools</a>
+            <a href="#about">About</a>
+        </nav>
+        <span class="online"><i></i> SYSTEM READY</span>
+    </header>
+
+    <main>
+       <section class="hero" id="home">
+    <div class="hero-content">
+        <div class="eyebrow">
+            CYBERSECURITY &amp; DIGITAL FORENSICS
+        </div>
+
+        <h1>
+            Cybersecurity<br>
+            <span>Toolkit</span>
+        </h1>
+
+        <p>
+            A student-friendly cybersecurity and digital forensics
+            toolkit designed for security analysis, file verification
+            and digital evidence investigation.
+        </p>
+
+        <a href="#tools" class="primary-btn">
+            Explore Tools ⟶
+        </a>
+    </div>
+
+    <div class="hero-visual">
+        <div class="shield-glow">
+            <svg viewBox="0 0 200 220"
+                 xmlns="http://www.w3.org/2000/svg"
+                 aria-label="Cybersecurity shield illustration"
+                 role="img">
+                <defs>
+                    <linearGradient id="shieldGradient"
+                                    x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#00e5ff"/>
+                        <stop offset="100%" stop-color="#1478ff"/>
+                    </linearGradient>
+                </defs>
+
+                <path d="M100 12
+                         L169 39
+                         L160 122
+                         Q151 174 100 204
+                         Q49 174 40 122
+                         L31 39 Z"
+                      fill="url(#shieldGradient)"
+                      stroke="#8ffaff"
+                      stroke-width="5"
+                      stroke-linejoin="round"/>
+
+                <path d="M100 24
+                         L100 190
+                         Q145 161 151 120
+                         L159 47 Z"
+                      fill="#ffffff"
+                      opacity="0.12"/>
+
+                <path d="M72 105 L91 124 L132 80"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-width="9"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+</section>```
+
+        <section class="section" id="tools">
+            <div class="section-heading">
+                <div class="eyebrow">YOUR SECURITY WORKBENCH</div>
+                <h2>Cybersecurity <span>Toolkit</span></h2>
+                <p>Select a module to begin your analysis.</p>
+            </div>
+
+            <div class="tool-grid">
+                <article class="tool-card">
+                    <div class="tool-icon cyan">🔐</div>
+                    <span class="tag">PASSWORD SECURITY</span>
+                    <h3>Password Strength Checker</h3>
+                    <p>Evaluate password complexity and learn safer password practices.</p>
+                    <button onclick="openTool('passwordTool')">Open Tool ↗</button>
+                </article>
+
+                <article class="tool-card">
+                    <div class="tool-icon blue">📁</div>
+                    <span class="tag">FILE VERIFICATION</span>
+                    <h3>File Integrity Checker</h3>
+                    <p>Generate SHA-256 hashes and compare a file with a reference.</p>
+                    <button onclick="openTool('integrityTool')">Open Tool ↗</button>
+                </article>
+
+                <article class="tool-card">
+                    <div class="tool-icon purple">🕵️</div>
+                    <span class="tag">DIGITAL FORENSICS</span>
+                    <h3>Metadata Analyzer</h3>
+                    <p>Inspect basic file properties and image dimensions.</p>
+                    <button onclick="openTool('metadataTool')">Open Tool ↗</button>
+                </article>
+
+                <article class="tool-card">
+                    <div class="tool-icon pink">🔍</div>
+                    <span class="tag">EVIDENCE ANALYSIS</span>
+                    <h3>Evidence Tampering Detector</h3>
+                    <p>Compare two files to detect content differences using hashes.</p>
+                    <button onclick="openTool('tamperingTool')">Open Tool ↗</button>
+                </article>
+
+                <article class="tool-card">
+                    <div class="tool-icon green">🌐</div>
+                    <span class="tag">BROWSER FORENSICS</span>
+                    <h3>Browser Forensics Timeline</h3>
+                    <p>Sort authorized browser-history CSV records by date and time.</p>
+                    <button onclick="openTool('browserTool')">Open Tool ↗</button>
+                </article>
+
+                <article class="tool-card info-card">
+                    <div class="tool-icon blue">🛡️</div>
+                    <span class="tag">SECURITY PRINCIPLES</span>
+                    <h3>Learn the CIA Triad</h3>
+                    <p>Understand the three fundamental goals of information security.</p>
+                    <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                        Learn More ↗
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- TOOL 1: PASSWORD CHECKER -->
+        <section class="workspace" id="passwordTool">
+            <div class="workspace-header">
+                <div><span class="tag">MODULE 01</span><h2>🔐 Password Strength Checker</h2></div>
+                <button class="close-btn" onclick="closeTool('passwordTool')">✕ Close</button>
+            </div>
+            <p>Check complexity locally. Do not enter a real or reused password.</p>
+
+            <label for="passwordInput">Test password</label>
+            <div class="input-with-button">
+                <input id="passwordInput" type="password" placeholder="Enter a sample password"
+                       autocomplete="off" oninput="checkPassword()">
+                <button class="secondary-btn" onclick="togglePassword()">Show / Hide</button>
+            </div>
+
+            <div class="strength-line"><span id="strengthBar"></span></div>
+            <h3 id="strengthText">Waiting for password</h3>
+            <div class="checks" id="passwordChecks"></div>
+            <div class="notice">💡 Use a unique password or passphrase and enable multi-factor authentication.
+                This is a simple educational checker, not a password-cracking test.</div>
+        </section>
+
+        <!-- TOOL 2: FILE INTEGRITY -->
+        <section class="workspace" id="integrityTool">
+            <div class="workspace-header">
+                <div><span class="tag">MODULE 02</span><h2>📁 File Integrity Checker</h2></div>
+                <button class="close-btn" onclick="closeTool('integrityTool')">✕ Close</button>
+            </div>
+            <p>Select a reference file and a file to check. Identical file contents should produce the same SHA-256 hash.</p>
+
+            <label for="referenceFile">Reference file (optional)</label>
+            <input type="file" id="referenceFile">
+            <label for="integrityFile">File to check</label>
+            <input type="file" id="integrityFile">
+            <button class="primary-btn" onclick="checkIntegrity()">Calculate & Compare Hashes</button>
+            <div id="integrityResult" class="result-box">Your hash results will appear here.</div>
+        </section>
+
+        <!-- TOOL 3: METADATA ANALYZER -->
+        <section class="workspace" id="metadataTool">
+            <div class="workspace-header">
+                <div><span class="tag">MODULE 03</span><h2>🕵️ Digital Evidence Metadata Analyzer</h2></div>
+                <button class="close-btn" onclick="closeTool('metadataTool')">✕ Close</button>
+            </div>
+            <p>Examine basic properties of a file you are authorized to analyze.</p>
+            <label for="metadataFile">Choose evidence file</label>
+            <input type="file" id="metadataFile" onchange="analyzeMetadata()">
+            <div id="metadataResult" class="result-box">Select a file to view its properties.</div>
+            <div id="metadataPreview" class="preview"></div>
+            <div class="notice">Forensic note: file timestamps and metadata may be changed or inaccurate.
+                This module does not extract all EXIF data or prove authenticity.</div>
+        </section>
+
+        <!-- TOOL 4: TAMPERING DETECTOR -->
+        <section class="workspace" id="tamperingTool">
+            <div class="workspace-header">
+                <div><span class="tag">MODULE 04</span><h2>🔍 Evidence Tampering Detector</h2></div>
+                <button class="close-btn" onclick="closeTool('tamperingTool')">✕ Close</button>
+            </div>
+            <p>Compare a preserved reference copy with a second file. Use only files you are authorized to examine.</p>
+            <label for="evidenceOriginal">Reference evidence file</label>
+            <input type="file" id="evidenceOriginal">
+            <label for="evidenceCurrent">File being examined</label>
+            <input type="file" id="evidenceCurrent">
+            <button class="primary-btn" onclick="detectTampering()">Compare Evidence</button>
+            <div id="tamperingResult" class="result-box">Choose both files to compare.</div>
+            <div class="notice">A mismatch indicates different file contents, not necessarily malicious tampering.
+                A match does not establish chain of custody or prove who handled the file.</div>
+        </section>
+
+        <!-- TOOL 5: BROWSER TIMELINE -->
+        <section class="workspace" id="browserTool">
+            <div class="workspace-header">
+                <div><span class="tag">MODULE 05</span><h2>🌐 Browser Forensics Timeline</h2></div>
+                <button class="close-btn" onclick="closeTool('browserTool')">✕ Close</button>
+            </div>
+            <p>Import an authorized CSV export. Suggested columns: <code>timestamp</code>, <code>url</code>, and <code>title</code>.</p>
+            <label for="browserFile">Choose browser-history CSV</label>
+            <input type="file" id="browserFile" accept=".csv,text/csv">
+            <button class="primary-btn" onclick="buildTimeline()">Build Timeline</button>
+            <div id="timelineSummary" class="result-box">No timeline loaded.</div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Date / Time</th><th>Page Title</th><th>URL</th></tr></thead>
+                    <tbody id="timelineBody">
+                        <tr><td colspan="3">Import a CSV file to display records.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="secondary-btn" onclick="downloadTimeline()">Export Sorted CSV</button>
+            <div class="notice">Only analyze browser records you are permitted to access.
+                CSV timestamps must be recognizable by your browser's date parser.</div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section about" id="about">
+            <div class="section-heading">
+                <div class="eyebrow">FOUNDATION OF SECURITY</div>
+                <h2>The <span>CIA Triad</span></h2>
+                <p>Three essential principles for protecting information.</p>
+            </div>
+            <div class="cia-grid">
+                <div class="cia-card"><h3>🔒 Confidentiality</h3><p>Only authorized people can access information.</p></div>
+                <div class="cia-card"><h3>✅ Integrity</h3><p>Information remains accurate and is not changed improperly.</p></div>
+                <div class="cia-card"><h3>⚡ Availability</h3><p>Systems and information are accessible when needed.</p></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="brand">🛡️ Cyber<span>Shield</span></div>
+        <p>Educational project • HTML, CSS, JavaScript & Web Crypto API</p>
+        <p>Use responsibly. Analyze only authorized files and evidence.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
